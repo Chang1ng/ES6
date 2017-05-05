@@ -125,6 +125,18 @@
 	},function(error){
 		console.log(error);
 	});
+	
+promise嵌套
 
+	var pro1 = new Promise(function(resolve,reject){
+		//....
+	});
+	var pro2 = new Promise(function(resolve,reject){
+		//....
+		resolve(pro1);
+	});
+	//pro2的resolve方法依赖pro1的返回结果。pro1的状态决定了pro2的状态。
+	//如果pro1状态是pending，那么pro2的回调函数会等待pro1状态改变。
+	//如果pro1已经处于某一种完成状态，pro2回调函数会立刻执行。
 
 	
