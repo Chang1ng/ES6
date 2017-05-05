@@ -44,7 +44,7 @@
 		//error
 	});
 	
-简单的例子1
+简单的例子1 （最基本用法）
 
 	//makeP方法返回一个Promise实例，表示一段时间以后才会发生的结果。过了指定的时间（time参数）以后，Promise实例的状态变为Resolved，就会触发then方法绑定的回调函数。
 	function makeP(time){
@@ -56,6 +56,40 @@
 		console.log(value);
 	});
 	
-简单的例子2
+简单的例子2 （执行顺序）
+
+	//Promise新建后立即执行，所以首先输出的是“promised”。然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以“resolved”最后输出。
+	let promise = new Promise(function(resolve,reject){
+		console.log('promised');
+		resolve();
+	})
+	
+	promise.then(function(){
+		console.log('resolved');
+	});
+	
+	console.log('lalaland');
+
+简单的例子3 （异步加载图片）
+	
+	function loadImg(url){
+		return new Promise(function(resolve,reject){
+			
+			var img = new Image();
+			img.onload = function(){
+				resolve(img);
+			}
+			img.onerror = function(){
+				reject( new Error('加载图片失败' + url) );
+			}
+			
+			img.src = url;
+			
+		});
+	}
+	
+简单的例子4 （异步ajax）
+
+
 
 	
