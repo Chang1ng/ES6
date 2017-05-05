@@ -88,8 +88,43 @@
 		});
 	}
 	
-简单的例子4 （异步ajax）
+简单的例子4 （异步ajax Promise）
 
+	function ajax (url){
+		var promise = new Promise(resolve,reject){
+			//创建xmlhttp对象
+			var client = new XMLHttpRequest();
+			client.open("GET",url);
+			
+			client.onreadystatechange = handler;
+			
+			client.responseType = json;
+			
+			client.setRequestHeader("Accept","application/json");
+			
+			client.send();
+			
+			function handler(){
+				if(this.readyState !== 4){
+					return;
+				}
+				if(this.status === 200){
+					resolve(this.response);	
+				}else{
+					reject(new Error(this.statusText));
+				}
+			}
+			
+		};
+		
+		return promise;
+	}
+	
+	ajax('xxx.php').then(function(json){
+		console.log(json);
+	},function(error){
+		console.log(error);
+	});
 
 
 	
