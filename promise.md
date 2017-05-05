@@ -139,4 +139,14 @@ promise嵌套
 	//如果pro1状态是pending，那么pro2的回调函数会等待pro1状态改变。
 	//如果pro1已经处于某一种完成状态，pro2回调函数会立刻执行。
 
+then的链式调用
+
+	//then的链式调用,第二个then依赖于第一个then的执行结果。
+	fn.then(function(){
+		//...
+	}).then(function(){
+		//a
+	},function(){
+		//b
+	});
 	
