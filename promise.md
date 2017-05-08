@@ -150,3 +150,5 @@ then的链式调用
 		//b
 	});
 	
+	
+promise.resolve()和promise.reject()
